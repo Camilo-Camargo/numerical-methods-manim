@@ -85,20 +85,20 @@ class DifferentialEquation(MovingCameraScene):
         constraints = Group(alpha, alpha_prime, w, a, b, n).arrange(DOWN, buff=0.5) 
 
 
-#        h = MathTex(f"h = {h}")
-#        p = MathTex(f"p = {p}")
-#        m = MathTex(f"m = {m}")  
+        h = MathTex(f"h = {h}")
+        p = MathTex(f"p = {p}")
+        m = MathTex(f"m = {m}")  
 
-#        values = Group(h,p,m).arrange(DOWN, buff=0.5)
-#
+        values = Group(h,p,m).arrange(DOWN, buff=0.5)
+
         self.play(Create(title))
-#        for i,constraint in enumerate(constraints):
-#            self.play(Create(constraint)) 
+        for i,constraint in enumerate(constraints):
+            self.play(Create(constraint)) 
 
-#        self.play(*[constraint.animate.shift(4*LEFT) for constraint in constraints]) 
+        self.play(*[constraint.animate.shift(4*LEFT) for constraint in constraints]) 
 
-#        for value in values:
-#            self.play(Create(value)) 
+        for value in values:
+            self.play(Create(value)) 
 
         matrix = Matrix(matrix)
         self.play(Create(matrix))

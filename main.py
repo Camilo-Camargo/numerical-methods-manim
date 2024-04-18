@@ -94,12 +94,11 @@ class NewtonRaphsonMethod(MovingCameraScene):
         f_chart = axes.plot(fx)
         self.play(Write(f_chart))
 
-        left = method.compute(0)
+        #left = method.compute(0)
         right = method.compute(4)
 
-
         #self.proof(left, fun, axes)
-        #self.proof(right, fun, axes)
+        self.proof(right, fun, axes)
 
 
         self.next_slide()
@@ -137,8 +136,12 @@ class NewtonRaphsonMethod(MovingCameraScene):
     def proof(self, vars, fun,axes):
         fx, dfx, df2x = fun
 
-        for i,xl in enumerate(vars.keys()):
+        keys = vars.keys()
+        keys_len = len(keys)
 
+        for i,xl in enumerate(keys):
+            if i+1 == keys_len: continue
+            print(i, xl);
             x_ = vars[xl]
             y_ = fx(x_) 
             dy_ = df2x(x_)
@@ -167,7 +170,6 @@ class NewtonRaphsonMethod(MovingCameraScene):
             tan = lambda _x: y_ + dy_*(_x - x_)
             x_a_p = x_*line_offset
             x_b_p = x_*(-line_offset)
-            print(type(x_a_p))
             x_tan_a = axes.coords_to_point(x_a_p,tan(x_a_p), 0)
             x_tan_a = Dot(x_tan_a)
             x_tan_b = axes.coords_to_point(x_b_p, tan(x_b_p), 0)
@@ -206,7 +208,7 @@ class NewtonRaphsonMethod(MovingCameraScene):
                 self.wait()
 
 
-            self.wait(2)
+            self.wait()
 
             self.play(FadeOut(y_brace), FadeOut(y_brace_tex), FadeOut(x_axis_a_dot))
 
